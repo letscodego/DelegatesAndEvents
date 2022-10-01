@@ -1,18 +1,21 @@
-﻿WorkPerformedHandler del1 = new WorkPerformedHandler(WorkPerformed1);
-WorkPerformedHandler del2 = new WorkPerformedHandler(WorkPerformed2);
+﻿using DelegatesAndEvents;
 
-DoWork(del1);
-Console.ReadLine();
-
-static void DoWork(WorkPerformedHandler del) => del(5, WorkType.GoToMeeting);
-
-
-static void WorkPerformed1(int hurs, WorkType workType) => Console.WriteLine($"WorkPerformed1 called. Hours: {hurs}");
-
-static void WorkPerformed2(int hurs, WorkType workType) => Console.WriteLine($"WorkPerformed2 called. Hours: {hurs}");
+var work = new Worker();
+work.WorkPerformed += new EventHandler<WorkPerformedEventArgs>(Worker_WorkPerformed);
+work.WorkCompleted += new EventHandler(Worker_WorkCompleted);
+work.DoWork(8, WorkType.Coding);
 
 
-delegate void WorkPerformedHandler(int hours, WorkType workType);
+static void Worker_WorkPerformed(object sender, WorkPerformedEventArgs e)
+{
+    Console.WriteLine($"Hours worked: {e.Hours} {e.WorkType}");
+}
+
+static void Worker_WorkCompleted(object sender, EventArgs e)
+{
+    Console.WriteLine("Worker is done");
+}
+
 public enum WorkType
 {
     GoToMeeting,
