@@ -8,6 +8,18 @@ BizRuleDelegate multiplyDel = (x, y) => x * y;
 var data = new ProcessData();
 data.Process(3, 5, addDel);
 
+//using Action
+Action<int, int> myAction;
+Action<int, int> myAddAction = (x, y) => Console.WriteLine(x + y);
+Action<int, int> myMultiplyAction = (x, y) => Console.WriteLine(x * y);
+
+myAction = 
+    DateTime.Now.DayOfWeek == DayOfWeek.Sunday ?
+    myAddAction : 
+    myMultiplyAction;
+
+data.ProcessAction(3, 6, myAction);
+
 
 //using anonymous methofs
 var work = new Worker();
