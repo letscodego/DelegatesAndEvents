@@ -20,6 +20,17 @@ myAction =
 
 data.ProcessAction(3, 6, myAction);
 
+//using Func
+Func<int, int, int> myFunc;
+Func<int, int, int> myAddFunc = (x, y) => x + y;
+Func<int, int, int> myMultiplyFunc = (x, y) => x * y;
+
+myFunc =
+    DateTime.Now.DayOfWeek == DayOfWeek.Sunday ?
+    myAddFunc :
+    myMultiplyFunc;
+
+data.ProcessFunc(3, 21, myFunc);
 
 //using anonymous methofs
 var work = new Worker();

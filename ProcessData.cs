@@ -13,5 +13,11 @@
             action(x, y);
             Console.WriteLine("Action is done!");
         }
+
+        public void ProcessFunc(int x, int y, Func<int, int, int> func)
+        {
+            var result = func(x, y);
+            Console.WriteLine($"Func is done {result}");
+        }
     }
 }
